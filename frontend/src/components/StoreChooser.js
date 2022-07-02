@@ -1,10 +1,23 @@
+import { useState } from "react";
+
 const StoreChooser = () => {
+  const [store, setStore] = useState();
+
+  function onchange = () => {
+    
+  }
+
   return (
-    <select>
-      <option>Please select an option</option>
-      <option>Seven Hills</option>
-      <option>Sydney</option>
-    </select>
+    <>
+      <div>
+        <h2>Select Your store:</h2>
+      </div>
+      <select>
+        <option>Select an option</option>
+        <option>Seven Hills</option>
+        <option>Sydney</option>
+      </select>
+    </>
   );
 };
 
