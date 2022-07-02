@@ -13,10 +13,7 @@ const OrderSchema = new mongoose.Schema(
     orderStatus: {
       type: String,
     },
-    date: {
-      type: Date,
-      default: Date.now,
-    },
+
     pickupLocation: {
       type: String,
     },
