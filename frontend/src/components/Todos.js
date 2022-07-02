@@ -1,5 +1,5 @@
-const Todos = () => {
-  return <div>Todos for {}</div>;
+const Todos = (props) => {
+  return <div>Todos for {props.store}</div>;
 };
 
 export default Todos;
