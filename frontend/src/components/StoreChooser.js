@@ -1,19 +1,38 @@
 import { useState } from "react";
 
-const StoreChooser = () => {
-  const [store, setStore] = useState();
+const StoreChooser = (props) => {
+  const onChange = (e) => {
+    e.preventDefault();
+    props.setStore(e.target.value);
+  };
 
-  const onchange = () => {};
+  const welcomeText =
+    props.store === ""
+      ? "Please select a store"
+      : `Welcome ${props.store} team`;
 
   return (
     <>
-      <div>
-        <h2>Select Your store:</h2>
-      </div>
-      <select>
-        <option>Select an option</option>
-        <option>Seven Hills</option>
-        <option>Sydney</option>
+      <h2>{welcomeText}</h2>
+
+      <label htmlFor="storeChooser">Select store here: </label>
+      <select
+        onChange={onChange}
+        id="storeChooser"
+        name="storeChooser"
+        defaultValue={""}
+      >
+        <option disabled={true} value={""}>
+          Select an option{" "}
+        </option>
+        <option value="Canberra">Canberra - 213</option>
+        <option value="Fortitude Valley">Fortitude Valley - 416</option>
+        <option value="Hobart">Hobart - 710</option>
+        <option value="Melbourne">Melbourne - 314</option>
+        <option value="Perth">Perth - 615</option>
+        <option value="Ringwood">Ringwood - 319</option>
+        <option value="Seven Hills">Seven Hills - 208</option>
+        <option value="Sydney">Sydney - 210</option>
       </select>
     </>
   );
