@@ -3,9 +3,7 @@ import { useState } from "react";
 const StoreChooser = () => {
   const [store, setStore] = useState();
 
-  function onchange = () => {
-    
-  }
+  const onchange = () => {};
 
   return (
     <>
