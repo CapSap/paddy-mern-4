@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Incoming from "./components/Incoming";
 import StoreChooser from "./components/StoreChooser";
 import Todos from "./components/Todos";
 
@@ -17,10 +18,11 @@ function App() {
   }, []);
 
   return (
-    <div>
+    <>
       <StoreChooser store={store} setStore={setStore} />
       <Todos store={store} />
-    </div>
+      <Incoming orders={allOrders} />
+    </>
   );
 }
 
