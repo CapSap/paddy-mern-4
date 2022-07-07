@@ -1,41 +1,25 @@
+import Card from "./Card";
+
 const Incoming = (props) => {
   console.log(props.orders);
 
-  const row = props.orders
-    .filter((x) => x.pickupLocation === "Syd")
-    .map((x) => {
-      {
-        console.log(x);
-      }
-      return (
-        <tr key={x._id}>
-          <td>{new Date(x.createdAt).toLocaleDateString()}</td>
-          <td>{x.orderNumber}</td>
-          <td>{x.customerName}</td>
-          <td>{x.customerName}</td>
-          <td>{x.customerPhone}</td>
-        </tr>
-      );
-    });
-
-  console.log(row);
+  const filteredOrders = props.orders.filter((x) => x.pickupLocation === "Syd");
 
   return (
-    <>
-      <h3>Incoming Orders / Awaiting customer pickup</h3>
-      <table>
-        <tr>
-          <th>Date</th>
-          <th>Order Number</th>
-          <th>Custome Name</th>
-          <th>4 Hour?</th>
+    // why does below need to be a table?
+    // maybe try cards?
+    // what is the goal?
+    // easy for people to read and use.
+    // responsive ie fit those stupid narrow screens?
+    // i think cards would be better.
+    // so how to display the data?
 
-          <th>Phone</th>
-          <th>Notes</th>
-        </tr>
-        {row}
-      </table>
-    </>
+    <div className="flex-1">
+      <h3>Incoming Orders / Awaiting customer pickup</h3>
+      {filteredOrders.map((x) => (
+        <Card key={x._id} order={x} />
+      ))}
+    </div>
   );
 };
 
