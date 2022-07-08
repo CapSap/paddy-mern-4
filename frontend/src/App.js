@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Entry from "./components/Entry";
 import Incoming from "./components/Incoming";
 import StoreChooser from "./components/StoreChooser";
 import Todos from "./components/Todos";
@@ -20,8 +21,9 @@ function App() {
   return (
     <>
       <StoreChooser store={store} setStore={setStore} />
+      <Entry store={store} />
       <Todos store={store} />
-      <Incoming orders={allOrders} />
+      <Incoming store={store} orders={allOrders} />
     </>
   );
 }
