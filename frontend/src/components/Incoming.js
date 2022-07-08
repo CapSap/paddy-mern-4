@@ -3,7 +3,9 @@ import Card from "./Card";
 const Incoming = (props) => {
   console.log(props.orders);
 
-  const filteredOrders = props.orders.filter((x) => x.pickupLocation === "Syd");
+  const filteredOrders = props.orders.filter(
+    (x) => x.pickupLocation === props.store
+  );
 
   return (
     // why does below need to be a table?
@@ -15,9 +17,9 @@ const Incoming = (props) => {
     // so how to display the data?
 
     <div className="flex-1">
-      <h3>Incoming Orders / Awaiting customer pickup</h3>
-      {filteredOrders.map((x) => (
-        <Card key={x._id} order={x} />
+      <h3 className="font-bold">Incoming Orders / Awaiting customer pickup</h3>
+      {filteredOrders.map((order) => (
+        <Card key={order._id} order={order} />
       ))}
     </div>
   );
