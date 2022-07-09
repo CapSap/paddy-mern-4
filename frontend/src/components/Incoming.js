@@ -1,10 +1,8 @@
 import Card from "./Card";
 
 const Incoming = (props) => {
-  console.log(props.orders);
-
   const filteredOrders = props.orders.filter(
-    (x) => x.pickupLocation === props.store
+    (order) => order.pickupLocation === props.store
   );
 
   return (
