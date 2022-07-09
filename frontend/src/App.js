@@ -20,8 +20,10 @@ function App() {
 
   return (
     <>
+      {/* entry component is independandt of store state. any view can create a CNC request */}
+      <Entry />
+      <br />
       <StoreChooser store={store} setStore={setStore} />
-      <Entry store={store} />
       <Todos store={store} />
       <Incoming store={store} orders={allOrders} />
     </>
