@@ -3,15 +3,16 @@ const mongoose = require("mongoose");
 const OrderSchema = new mongoose.Schema(
   {
     orderNumber: {
-      type: Number,
+      type: String,
       required: true,
     },
     customerName: {
       type: String,
       required: true,
     },
-    orderStatus: {
+    status: {
       type: String,
+      default: "Request created",
     },
 
     pickupLocation: {
@@ -28,7 +29,7 @@ const OrderSchema = new mongoose.Schema(
       {
         sku: { type: String, required: true },
         qty: { type: Number, required: true },
-        desc: { type: String, required: true },
+        description: { type: String, required: true },
         sendingStore: { type: String, required: true },
       },
     ],
