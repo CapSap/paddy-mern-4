@@ -15,7 +15,7 @@ const StoreChooser = (props) => {
     <>
       <h2>{welcomeText}</h2>
 
-      <label htmlFor="storeChooser">Select store here: </label>
+      <label htmlFor="storeChooser">Select store view here: </label>
       <select
         onChange={onChange}
         id="storeChooser"
