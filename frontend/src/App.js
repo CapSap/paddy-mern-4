@@ -24,7 +24,7 @@ function App() {
       <Entry />
       <br />
       <StoreChooser store={store} setStore={setStore} />
-      <Todos store={store} />
+      <Todos store={store} orders={allOrders} />
       <Incoming store={store} orders={allOrders} />
     </>
   );
