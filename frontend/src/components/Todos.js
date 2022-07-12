@@ -1,11 +1,7 @@
 import Card from "./Card";
 
 const Todos = (props) => {
-  // get the orders and filter.
-  // if order.items.map(itemInfo =>
-  //   itemInfo.sendingStore === props.store then display info.)
-
-  console.log(props.orders);
+  // props contains store and AllOrders from app.js
 
   const orderTodos = props.orders.filter((order) => {
     return order.orderedItems.some((item) => item.sendingStore === props.store);
