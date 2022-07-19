@@ -1,15 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import NavBar from "./components/Navbar";
-import StoreChooser from "./components/StoreChooser";
-
-function App() {
-  return (
-    <div>
-      <NavBar />
-      <StoreChooser />
-    </div>
-  );
-}
+import App from "./App";
 
 ReactDOM.render(<App />, document.getElementById("root"));
