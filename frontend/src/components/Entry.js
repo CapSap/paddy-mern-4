@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 
 function Entry() {
+  // default state that will be updated on input onChange and sent to mongo when button is clicked
   const [orderInfo, setOrderInfo] = useState({
     orderNumber: "",
     customerName: "",
     status: "waiting to be sent",
-    pickupLocation: "Canberra",
+    pickupLocation: "",
     orderedItems: [
       {
         sendingStore: "Canberra",
@@ -228,6 +229,10 @@ function Entry() {
             }}
             className="w-full bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2"
           >
+            <option disabled value="">
+              Please select a store
+            </option>
+
             <option value="Canberra">Canberra - 213</option>
             <option value="Fortitude Valley">Fortitude Valley - 416</option>
             <option value="Hobart">Hobart - 710</option>
