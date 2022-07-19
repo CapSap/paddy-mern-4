@@ -300,7 +300,7 @@ function Entry() {
             Get more requests
           </button>
         </div>
-        <p className="max-w-screen-md text-gray-500 md:text-lg text-center mx-auto">
+        <p className="max-w-screen-md md:col-span-2 text-gray-500 md:text-lg text-center mx-auto">
           Make a request for each sku on the order
         </p>
         {itemRequester}
