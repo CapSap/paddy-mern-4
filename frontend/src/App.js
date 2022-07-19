@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Entry from "./components/Entry";
-import Incoming from "./components/Incoming";
-import StoreChooser from "./components/StoreChooser";
-import Todos from "./components/Todos";
+
+import { Routes, Route, Link } from "react-router-dom";
+import Home from "./components/Home";
 
 function App() {
   const [store, setStore] = useState("");
@@ -20,12 +20,18 @@ function App() {
 
   return (
     <>
-      {/* entry component is independandt of store state. any view can create a CNC request */}
-      <Entry />
+      <div>Nav Bar will go here</div>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Home store={store} orders={allOrders} setStore={setStore} />
+          }
+        />
+        {/* entry component is independandt of store state. any view can create a CNC request */}
+        <Route path="/entry" element={<Entry />} />
+      </Routes>
       <br />
-      <StoreChooser store={store} setStore={setStore} />
-      <Todos store={store} orders={allOrders} />
-      <Incoming store={store} orders={allOrders} />
     </>
   );
 }
