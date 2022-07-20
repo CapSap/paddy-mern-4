@@ -1,9 +1,12 @@
+import { Link } from "react-router-dom";
+
 const NavBar = () => {
   return (
-    <ul>
-      <li>Entry</li>
-      <li>Todos</li>
-      <li>Incoming</li>
+    <ul className="border">
+      <li>
+        <Link to={"/"}>Home</Link>
+      </li>
+      <Link to={"entry"}>Entry</Link>
     </ul>
   );
 };
