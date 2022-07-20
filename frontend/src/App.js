@@ -3,6 +3,7 @@ import Entry from "./components/Entry";
 
 import { Routes, Route, Link } from "react-router-dom";
 import Home from "./components/Home";
+import NavBar from "./components/Navbar";
 
 function App() {
   const [store, setStore] = useState("");
@@ -20,7 +21,7 @@ function App() {
 
   return (
     <>
-      <div>Nav Bar will go here</div>
+      <NavBar />
       <Routes>
         <Route
           path="/"
