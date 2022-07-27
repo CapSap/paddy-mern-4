@@ -6,7 +6,12 @@ const NavBar = () => {
       <li>
         <Link to={"/"}>Home</Link>
       </li>
-      <Link to={"entry"}>Entry</Link>
+      <li>
+        <Link to={"entry"}>Entry</Link>
+      </li>
+      <li>
+        <Link to={"ecomm"}>Seven Hills/Ecomm view</Link>
+      </li>
     </ul>
   );
 };
