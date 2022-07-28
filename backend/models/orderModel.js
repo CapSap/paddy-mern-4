@@ -27,9 +27,7 @@ const OrderSchema = new mongoose.Schema(
     },
     orderedItems: [
       {
-        sku: { type: String, required: true },
-        qty: { type: Number, required: true },
-        description: { type: String, required: true },
+        items: { type: String, required: true },
         sendingStore: { type: String, required: true },
       },
     ],
