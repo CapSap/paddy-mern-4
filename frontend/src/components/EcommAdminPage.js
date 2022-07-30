@@ -8,13 +8,13 @@ const EcommAdminPage = ({ orders }) => {
         up.{" "}
       </p>
       <br />
-      <p>Orders waiting for IBT</p>
-      <Dashboard orders={orders} filter={"Request created"} />
+      <p>Orders waiting for Action from stores</p>
+      <Dashboard orders={orders} filterBy={"Request created"} />
 
       <br />
-      <p>orders ready for ibt acceptace</p>
+      {/* <p>orders ready for ibt acceptace</p> */}
 
-      <Dashboard orders={orders} filter={"Issue"} />
+      <Dashboard orders={orders} filterBy={"Issue"} />
     </div>
   );
 };
