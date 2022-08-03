@@ -42,6 +42,7 @@ const Dashboard = ({ orders, filterBy }) => {
               <td>{order.forHour}</td>
               <td>{order.pickupLocation}</td>
               <td>{item.sendingStore}</td>
+              <td>{order.notes}</td>
               <td>{item.items}</td>
             </tr>
           );
@@ -62,6 +63,7 @@ const Dashboard = ({ orders, filterBy }) => {
               <th>Four Hour?</th>
               <th>Collection Store</th>
               <th>Sending Store</th>
+              <th>Notes</th>
               <th>Items</th>
               <th>IBT</th>
               <th>Tracking</th>
