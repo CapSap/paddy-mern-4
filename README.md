@@ -2,14 +2,14 @@
 This is attempt number 4 for creating this app. 
 
 ## Project Description
-This app will serve as a tool an ecommerce department within a retail company. This app will communicate tasks and allow information to be passed back regarding specific tasks. It
+This app will serve as a task coordination tool an ecommerce department within a retail company. This app will communicate tasks and allow information to be passed back regarding specific tasks.
 
 ## Problem
 Problem I'm trying to solve was that at my old workplace several google sheets were used to coordinate task deligation and information flow between an ecommerce center and 7 retail locations. 
 
 ## MVP (Minium viable product)
 1. Ecomm / HQ user is able to create tasks
-2. Store / users are able to action tasks and update tasks (either yes okay, or not able to complete)
+2. Store / users are able to action tasks and update tasks (update with yes okay task complete, or not able to complete)
 3. Ecomm / HQ user can either reasign task or close task.  
 
 ## My goals and motivations
