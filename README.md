@@ -7,7 +7,7 @@ This app will serve as a task coordination tool an ecommerce department within a
 ## Problem
 Problem I'm trying to solve was that at my old workplace several google sheets were used to coordinate task deligation and information flow between an ecommerce center and 7 retail locations. 
 
-## MVP (Minium viable product)
+## MVP (Minimum viable product)
 1. Ecomm / HQ user is able to create tasks
 2. Store / users are able to action tasks and update tasks (update with yes okay task complete, or not able to complete)
 3. Ecomm / HQ user can either reasign task, close or delete task.  
