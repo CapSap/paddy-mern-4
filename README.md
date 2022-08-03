@@ -10,7 +10,7 @@ Problem I'm trying to solve was that at my old workplace several google sheets w
 ## MVP (Minium viable product)
 1. Ecomm / HQ user is able to create tasks
 2. Store / users are able to action tasks and update tasks (update with yes okay task complete, or not able to complete)
-3. Ecomm / HQ user can either reasign task or close task.  
+3. Ecomm / HQ user can either reasign task, close or delete task.  
 
 ## My goals and motivations
 My goal is to create a webapp to replace the several sheets- allow for a single store of data and different views depending on login location. Apply my front end knowledge and learn about backend development. 
