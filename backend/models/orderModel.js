@@ -29,6 +29,8 @@ const OrderSchema = new mongoose.Schema(
       {
         items: { type: String, required: true },
         sendingStore: { type: String, required: true },
+        ibt: { type: Number },
+        tracking: { type: String },
       },
     ],
     fourHour: {
