@@ -40,9 +40,9 @@ const TodoCard = ({ order }) => {
     return (
       <div key={x.sku} className="bg-red-300 p-4 ">
         <div className="text-lg">
-          <p>Description: {x.description}</p>
-          <p>Qty: {x.qty}</p>
-          <p>Sku: {x.sku}</p>
+          <p>Items: {x.items}</p>
+          {order.notes.length > 1 ? <p>Notes: {order.notes}</p> : null}
+
           <p>Please post to {order.pickupLocation}</p>
         </div>
         <form onSubmit={onSubmit} className="p-2">
