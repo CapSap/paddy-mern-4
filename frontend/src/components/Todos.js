@@ -11,7 +11,7 @@ const Todos = (props) => {
     <div>
       <h3 className="font-bold">Todos for {props.store}</h3>
       {orderTodos.map((order) => (
-        <TodoCard key={order._id} order={order} />
+        <TodoCard key={order._id} order={order} store={props.store} />
       ))}
     </div>
   );
