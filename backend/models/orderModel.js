@@ -32,9 +32,14 @@ const OrderSchema = new mongoose.Schema(
         ibt: { type: Number, default: "" },
         tracking: { type: String, default: "" },
         status: { type: String, default: "" },
+        message: String,
       },
     ],
     fourHour: {
+      type: Boolean,
+      default: false,
+    },
+    EcommAttentionNeeded: {
       type: Boolean,
       default: false,
     },
