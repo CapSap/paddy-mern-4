@@ -29,15 +29,38 @@ const setOrder = asyncHandler(async (req, res) => {
 
 const updateOrder = asyncHandler(async (req, res) => {
   const order = await Order.findById(req.params.id);
+  if (!order) {
+    res.status(400);
+    throw new Error("Order not found");
+  }
+  const updatedOrder = await Order.findByIdAndUpdate(req.params.id, req.body, {
+    returnDocument: "after",
+  });
+  res.status(200).json(updatedOrder);
+});
 
+const updateOrderedItems = asyncHandler(async (req, res) => {
+  const order = await Order.findOne({ "orderedItems._id": req.params.reqid });
   if (!order) {
     res.status(400);
     throw new Error("Order not found");
   }
 
-  const updatedOrder = await Order.findByIdAndUpdate(req.params.id, req.body, {
-    returnDocument: "after",
-  });
+  const updatedOrder = await Order.findOneAndUpdate(
+    {
+      "orderedItems._id": req.params.reqid,
+    },
+    {
+      $set: {
+        "orderedItems.$.ibt": req.body.ibt,
+        "orderedItems.$.tracking": req.body.tracking,
+        status: "ibt updated",
+      },
+    },
+    {
+      new: true,
+    }
+  );
 
   res.status(200).json(updatedOrder);
 });
@@ -46,4 +69,5 @@ module.exports = {
   getOrders,
   setOrder,
   updateOrder,
+  updateOrderedItems,
 };
