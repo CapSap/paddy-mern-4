@@ -1,8 +1,9 @@
 import { useState } from "react";
 
-const TodoCard = ({ order }) => {
+const TodoCard = ({ order, store }) => {
   const [orderedItems, setOrderedItems] = useState();
 
+  // this state hides/displays message text area and toggles required for ibt/tracking
   const [displayIssue, setDisplayIssue] = useState(false);
 
   function onChange(e) {
@@ -12,20 +13,18 @@ const TodoCard = ({ order }) => {
     });
   }
 
-  function onSubmit(e) {
+  function onIBTsubmit(e) {
     e.preventDefault();
-    console.log(e.target.value);
-  }
-
-  function onFormSubmit(e) {
-    e.preventDefault();
-
-    // console.log(JSON.stringify(orderInfo));
-    // fetch("http://localhost:5000/api/orders", {
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: JSON.stringify(orderInfo),
-    // });
+    fetch(`http://localhost:5000/api/orders/${e.target.id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        ...orderedItems,
+        requestID: e.target.id,
+        message: e.target.message.value,
+        status: `${store} posting item`,
+      }),
+    });
   }
 
   // should this component take in some input from user.
@@ -38,14 +37,13 @@ const TodoCard = ({ order }) => {
 
   function onIssueClick(e) {
     e.preventDefault();
+
     setDisplayIssue(!displayIssue);
   }
 
   const items = order.orderedItems
     .filter((x) => x.sendingStore === "Canberra")
     .map((x) => {
-      console.log(x._id);
-
       return (
         <div key={x.sku} className="bg-red-300 p-4 ">
           <div className="text-lg">
@@ -54,10 +52,11 @@ const TodoCard = ({ order }) => {
             {order.notes.length > 1 ? <p>Notes: {order.notes}</p> : null}
             <p>Please post to {order.pickupLocation}</p>
           </div>
-          <form onSubmit={onSubmit} className="p-2">
+          <form id={x._id} onSubmit={onIBTsubmit} className="p-2">
             <label htmlFor="ibt"> IBT: </label>
             <input
               onChange={onChange}
+              required={!displayIssue}
               id="ibt"
               name="ibt"
               type="text"
@@ -66,6 +65,7 @@ const TodoCard = ({ order }) => {
             <label htmlFor="tracking"> Tracking: </label>
             <input
               onChange={onChange}
+              required={!displayIssue}
               id="tracking"
               name="tracking"
               type="text"
@@ -77,24 +77,22 @@ const TodoCard = ({ order }) => {
             >
               Update
             </button>
-          </form>
-          <button
-            className="ml-2 bg-red-500 hover:bg-red-600 active:bg-red-700 focus-visible:ring ring-red-300 text-white text-sm md:text-base text-center rounded-lg outline-none transition duration-100 px-8 py-3"
-            onClick={onIssueClick}
-          >
-            There is an issue!
-          </button>
-          <div>
+            <button
+              className="ml-2 bg-red-500 hover:bg-red-600 active:bg-red-700 focus-visible:ring ring-red-300 text-white text-sm md:text-base text-center rounded-lg outline-none transition duration-100 px-8 py-3"
+              onClick={onIssueClick}
+            >
+              There is an issue!
+            </button>
             {displayIssue ? (
-              <form action="">
+              <>
                 <label htmlFor="message">Message: </label>{" "}
-                <input type="text" name="message"></input>
+                <textarea name="message" required={displayIssue}></textarea>
                 <button className="ml-2 bg-green-500 hover:bg-green-600 active:bg-green-700 focus-visible:ring ring-green-300 text-white text-sm md:text-base text-center rounded-lg outline-none transition duration-100 px-8 py-3">
                   Send to Ecomm
                 </button>
-              </form>
+              </>
             ) : null}
-          </div>
+          </form>
         </div>
       );
     });
