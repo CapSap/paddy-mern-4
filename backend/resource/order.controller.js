@@ -46,15 +46,20 @@ const updateOrderedItems = asyncHandler(async (req, res) => {
     throw new Error("Order not found");
   }
 
+  // if there is no issue do normal update
+
+  //if there is an issue then patch the order with message
+
   const updatedOrder = await Order.findOneAndUpdate(
     {
-      "orderedItems._id": req.params.reqid,
+      "orderedItems._id": req.body.requestID,
     },
     {
       $set: {
         "orderedItems.$.ibt": req.body.ibt,
         "orderedItems.$.tracking": req.body.tracking,
-        status: "ibt updated",
+        "orderedItems.$.message": req.body.message,
+        status: req.body.status,
       },
     },
     {
