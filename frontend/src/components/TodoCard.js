@@ -21,23 +21,28 @@ const TodoCard = ({ order, store }) => {
       body: JSON.stringify({
         ...orderedItems,
         requestID: e.target.id,
-        message: e.target.message.value,
         status: `${store} posting item`,
       }),
     });
   }
 
-  // should this component take in some input from user.
-  // and hold that user input as state here?
-  // react way would be add onchange function to update state.
-
-  // on button press do the put/update
-  // where is this ibt info going to go?
-  // parra needs to get this info as ibt awaiting accepting.
+  function onIssueSubmit(e) {
+    e.preventDefault();
+    console.log(e.target.message.value);
+    console.log(e.target.name);
+    fetch(`http://localhost:5000/api/orders/${e.target.name}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        requestID: e.target.name,
+        status: `${store} has an issue`,
+        message: e.target.message.value,
+      }),
+    });
+  }
 
   function onIssueClick(e) {
     e.preventDefault();
-
     setDisplayIssue(!displayIssue);
   }
 
@@ -77,6 +82,8 @@ const TodoCard = ({ order, store }) => {
             >
               Update
             </button>
+          </form>
+          <form onSubmit={onIssueSubmit} name={x._id}>
             <button
               className="ml-2 bg-red-500 hover:bg-red-600 active:bg-red-700 focus-visible:ring ring-red-300 text-white text-sm md:text-base text-center rounded-lg outline-none transition duration-100 px-8 py-3"
               onClick={onIssueClick}
@@ -87,7 +94,10 @@ const TodoCard = ({ order, store }) => {
               <>
                 <label htmlFor="message">Message: </label>{" "}
                 <textarea name="message" required={displayIssue}></textarea>
-                <button className="ml-2 bg-green-500 hover:bg-green-600 active:bg-green-700 focus-visible:ring ring-green-300 text-white text-sm md:text-base text-center rounded-lg outline-none transition duration-100 px-8 py-3">
+                <button
+                  className="ml-2 bg-green-500 hover:bg-green-600 active:bg-green-700 focus-visible:ring ring-green-300 text-white text-sm md:text-base text-center rounded-lg outline-none transition duration-100 px-8 py-3"
+                  type="submit"
+                >
                   Send to Ecomm
                 </button>
               </>
