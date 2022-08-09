@@ -1,7 +1,7 @@
 const Dashboard = ({ orders, filterBy }) => {
   console.log(orders);
   const data = orders
-    .filter((order) => order.status === filterBy)
+    .filter((order) => order.status.includes(filterBy))
     .map((order) => (
       <>
         {/* <tr key={order._id} className="border">
