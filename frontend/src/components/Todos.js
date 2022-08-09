@@ -1,4 +1,4 @@
-import Card from "./Card";
+import TodoCard from "./TodoCard";
 
 const Todos = (props) => {
   // props contains store and AllOrders from app.js
@@ -11,7 +11,7 @@ const Todos = (props) => {
     <div>
       <h3 className="font-bold">Todos for {props.store}</h3>
       {orderTodos.map((order) => (
-        <Card key={order._id} order={order} />
+        <TodoCard key={order._id} order={order} store={props.store} />
       ))}
     </div>
   );

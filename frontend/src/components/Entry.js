@@ -12,9 +12,7 @@ function Entry() {
         sendingStore: "Canberra",
         date: "",
         posted: false,
-        description: "",
-        qty: "",
-        sku: "",
+        items: "",
       },
     ],
     fourHour: false,
@@ -58,55 +56,20 @@ function Entry() {
     itemRequester.push(
       <div className="p-4 bg-slate-100">
         <p>Request number {i + 1}</p>
-        <div>
-          <label
-            className="inline-block text-gray-800 text-sm sm:text-base mb-2"
-            htmlFor="sku"
-          >
-            Sku:{" "}
-          </label>
-          <input
-            required="true"
-            className="w-full bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2"
-            name="sku"
-            id={i}
-            type="text"
-            onChange={(e) => {
-              handleOrderedItemsChange(e);
-            }}
-          ></input>
-        </div>
-        <div>
-          <label
-            className="inline-block text-gray-800 text-sm sm:text-base mb-2"
-            htmlFor="qty"
-          >
-            Quantity:{" "}
-          </label>
-          <input
-            className="w-full bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2"
-            id={i}
-            name="qty"
-            type="Number"
-            onChange={(e) => {
-              handleOrderedItemsChange(e);
-            }}
-          ></input>
-        </div>
 
         <div>
           <label
             className="inline-block text-gray-800 text-sm sm:text-base mb-2"
-            htmlFor="description"
+            htmlFor="items"
           >
-            Item description:{" "}
+            Item(s):{" "}
           </label>
           <textarea
-            required="true"
+            required={true}
             className="w-full bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2"
             id={i}
-            name="description"
-            key={"description" + i}
+            name="items"
+            key={"items" + i}
             onChange={(e) => {
               handleOrderedItemsChange(e);
             }}
@@ -188,7 +151,7 @@ function Entry() {
               Order Number:{" "}
             </label>
             <input
-              required="true"
+              required={true}
               type="text"
               name="orderNumber"
               id="orderNumber"
@@ -205,7 +168,7 @@ function Entry() {
               Customer Name:{" "}
             </label>
             <input
-              required="true"
+              required={true}
               type="text"
               name="customerName"
               id="customerName"
@@ -222,7 +185,7 @@ function Entry() {
               Pickup Location:{" "}
             </label>
             <select
-              required="true"
+              required={true}
               id="pickupLocation"
               value={orderInfo.pickupLocation}
               onChange={(e) => {

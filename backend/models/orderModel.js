@@ -27,14 +27,21 @@ const OrderSchema = new mongoose.Schema(
     },
     orderedItems: [
       {
-        sku: { type: String, required: true },
-        qty: { type: Number, required: true },
-        description: { type: String, required: true },
+        items: { type: String, required: true },
         sendingStore: { type: String, required: true },
+        ibt: { type: Number, default: "" },
+        tracking: { type: String, default: "" },
+        status: { type: String, default: "" },
+        message: String,
       },
     ],
     fourHour: {
       type: Boolean,
+      default: false,
+    },
+    EcommAttentionNeeded: {
+      type: Boolean,
+      default: false,
     },
   },
   { timestamps: true }
