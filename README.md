@@ -1,5 +1,5 @@
 # paddy-mern-4
-This is attempt number 4 for creating this app. 
+This is attempt number 4 for creating this app. It was a lot harder than what I thought it would be!
 
 ## Project Description
 This app will serve as a task coordination tool an ecommerce department within a retail company. This app will communicate tasks and allow information to be passed back regarding specific tasks.
