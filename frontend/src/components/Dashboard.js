@@ -44,6 +44,8 @@ const Dashboard = ({ orders, filterBy }) => {
               <td>{item.sendingStore}</td>
               <td>{order.notes}</td>
               <td>{item.items}</td>
+              <td>{item.ibt}</td>
+              <td>{item.tracking}</td>
             </tr>
           );
         })}
