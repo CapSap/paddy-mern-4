@@ -22,7 +22,7 @@ There will be 1 HQ user that creates and delegates tasks. 8 locations that can b
       B--yes store can process request---> C[Store updates request with IBT + Tracking]
       B--no store cannot process--->D[store updates order with feedback]
       D--->E{Ecomm / HQ acknowleges. request is updated or deleted}
-      E-->A
+      E--Request is modfied or re-asigned to a differnt store--->A
       E--Request is deleted--->I[Close request]
       C-->F[Ecomm / HQ  accpets IBT]
       F --IBT is good---> G[Close request]
