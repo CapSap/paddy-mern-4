@@ -1,5 +1,6 @@
 import fakeDB2 from "../../fakeDB2";
 import Dashboard from "./Dashboard";
+import Issues from "./Issues";
 
 const EcommAdminPage = ({ orders }) => {
   return (
@@ -9,22 +10,29 @@ const EcommAdminPage = ({ orders }) => {
         up.{" "}
       </p>
       <br />
+      <p>Orders with issue from store (OOS or other)</p>
+      <Issues orders={orders} filterBy={"issue"} />
+      <br />
 
       {/* orders should only have status: request created, STORENAME has an issue,  */}
 
-      <p>Orders waiting for Action from stores</p>
+      <p>
+        Orders waiting for Action from stores (fufil order or respond to
+        message)
+      </p>
       <Dashboard orders={orders} filterBy={"Request created"} />
-
-      <br />
-      {/* <p>orders ready for ibt acceptace</p> */}
-      <p>Orders with issue from store (OOS)</p>
-      <Dashboard orders={orders} filterBy={"issue"} />
 
       <br />
 
       <p>Orders ready for ibt accept</p>
-      <Dashboard orders={orders} filterBy={""} />
+      <Dashboard orders={orders} filterBy={"posting"} />
       <br />
+
+      {/* maybe the below should be a link to its own page.  */}
+
+      <p>All orders</p>
+      <Dashboard orders={orders} filterBy={""} />
+
       <br />
       <br />
       <br />
