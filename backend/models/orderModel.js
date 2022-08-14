@@ -10,10 +10,6 @@ const OrderSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    status: {
-      type: String,
-      default: "Request created",
-    },
 
     pickupLocation: {
       type: String,
