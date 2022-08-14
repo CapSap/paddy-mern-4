@@ -3,18 +3,17 @@ const Dashboard = ({ orders, filterBy }) => {
 
   function onArchiveClick(e) {}
 
-  const data = orders
-    .filter((order) => order.status.includes(filterBy))
-    .map((order) => (
-      <>
-        {order.orderedItems.map((item) => {
+  const data = orders.map((order) => (
+    <>
+      {order.orderedItems
+        .filter((item) => item.status.includes(filterBy))
+        .map((item) => {
           return (
             <tr key={order._id} className="border">
               {console.log(order.orderedItems)}
               <td>{new Date(order.createdAt).toLocaleDateString()}</td>
               <td>{order.orderNumber}</td>
               <td>{order.customerName}</td>
-              <td>{order.status}</td>
               <td>{order.forHour}</td>
               <td>{order.pickupLocation}</td>
               <td>{item.sendingStore}</td>
@@ -33,8 +32,8 @@ const Dashboard = ({ orders, filterBy }) => {
             </tr>
           );
         })}
-      </>
-    ));
+    </>
+  ));
 
   return (
     <div>
@@ -45,7 +44,6 @@ const Dashboard = ({ orders, filterBy }) => {
               <th>Date</th>
               <th>Order</th>
               <th>Customer Name</th>
-              <th>Order Status</th>
               <th>Four Hour?</th>
               <th>Collection Store</th>
               <th>Sending Store</th>
