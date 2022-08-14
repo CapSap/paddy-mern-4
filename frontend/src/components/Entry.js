@@ -5,7 +5,6 @@ function Entry() {
   const [orderInfo, setOrderInfo] = useState({
     orderNumber: "",
     customerName: "",
-    status: "waiting to be sent",
     pickupLocation: "",
     orderedItems: [
       {
