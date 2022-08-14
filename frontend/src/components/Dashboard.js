@@ -1,54 +1,39 @@
 const Dashboard = ({ orders, filterBy }) => {
   console.log(orders);
-  const data = orders
-    .filter((order) => order.status.includes(filterBy))
-    .map((order) => (
-      <>
-        {/* <tr key={order._id} className="border">
-          {console.log(order.orderedItems)}
-          <td>{new Date(order.createdAt).toLocaleDateString()}</td>
-          <td>{order.orderNumber}</td>
-          <td>{order.customerName}</td>
-          <td>{order.status}</td>
-          <td>{order.forHour}</td>
-          <td>{order.pickupLocation}</td>
-        </tr>
 
-        {order.orderedItems.map((item) => {
-          return (
-            <>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>{item.sendingStore}</td>
-                <td>{item.items}</td>
-              </tr>
-            </>
-          );
-        })} */}
+  function onArchiveClick(e) {}
 
-        {order.orderedItems.map((item) => {
+  const data = orders.map((order) => (
+    <>
+      {order.orderedItems
+        .filter((item) => item.status.includes(filterBy))
+        .map((item) => {
           return (
             <tr key={order._id} className="border">
               {console.log(order.orderedItems)}
               <td>{new Date(order.createdAt).toLocaleDateString()}</td>
               <td>{order.orderNumber}</td>
               <td>{order.customerName}</td>
-              <td>{order.status}</td>
               <td>{order.forHour}</td>
               <td>{order.pickupLocation}</td>
               <td>{item.sendingStore}</td>
               <td>{order.notes}</td>
               <td>{item.items}</td>
+              <td>{item.ibt}</td>
+              <td>{item.tracking}</td>
+              <td>
+                <button
+                  onClick={onArchiveClick}
+                  className="md:col-span-2 inline-block bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-700 focus-visible:ring ring-indigo-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3"
+                >
+                  Archive
+                </button>
+              </td>
             </tr>
           );
         })}
-      </>
-    ));
+    </>
+  ));
 
   return (
     <div>
@@ -59,7 +44,6 @@ const Dashboard = ({ orders, filterBy }) => {
               <th>Date</th>
               <th>Order</th>
               <th>Customer Name</th>
-              <th>Order Status</th>
               <th>Four Hour?</th>
               <th>Collection Store</th>
               <th>Sending Store</th>
@@ -67,6 +51,7 @@ const Dashboard = ({ orders, filterBy }) => {
               <th>Items</th>
               <th>IBT</th>
               <th>Tracking</th>
+              <th>Archive</th>
             </tr>
           </thead>
 

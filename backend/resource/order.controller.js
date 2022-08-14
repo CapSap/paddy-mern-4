@@ -46,21 +46,19 @@ const updateOrderedItems = asyncHandler(async (req, res) => {
     throw new Error("Order not found");
   }
 
-  // if there is no issue do normal update
-
-  //if there is an issue then patch the order with message
+  // create a new object from the res.body, and add the required orderedItems.$. positional to key names
+  const updateObjectWithPositionalOperatorInKeyName = {};
+  Object.keys(req.body).map((key) => {
+    updateObjectWithPositionalOperatorInKeyName[`orderedItems.$.${key}`] =
+      req.body[key];
+  });
 
   const updatedOrder = await Order.findOneAndUpdate(
     {
       "orderedItems._id": req.body.requestID,
     },
     {
-      $set: {
-        "orderedItems.$.ibt": req.body.ibt,
-        "orderedItems.$.tracking": req.body.tracking,
-        "orderedItems.$.message": req.body.message,
-        status: req.body.status,
-      },
+      $set: { ...updateObjectWithPositionalOperatorInKeyName },
     },
     {
       new: true,

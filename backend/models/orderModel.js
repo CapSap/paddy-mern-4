@@ -10,10 +10,6 @@ const OrderSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    status: {
-      type: String,
-      default: "Request created",
-    },
 
     pickupLocation: {
       type: String,
@@ -31,15 +27,11 @@ const OrderSchema = new mongoose.Schema(
         sendingStore: { type: String, required: true },
         ibt: { type: Number, default: "" },
         tracking: { type: String, default: "" },
-        status: { type: String, default: "" },
+        status: { type: String, default: "Request created" },
         message: String,
       },
     ],
     fourHour: {
-      type: Boolean,
-      default: false,
-    },
-    EcommAttentionNeeded: {
       type: Boolean,
       default: false,
     },

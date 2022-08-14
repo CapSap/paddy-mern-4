@@ -56,6 +56,7 @@ const TodoCard = ({ order, store }) => {
             <p>Items: {x.items}</p>
             {order.notes.length > 1 ? <p>Notes: {order.notes}</p> : null}
             <p>Please post to {order.pickupLocation}</p>
+            <p>Request Status: {x.status}</p>
           </div>
           <form id={x._id} onSubmit={onIBTsubmit} className="p-2">
             <label htmlFor="ibt"> IBT: </label>
@@ -113,7 +114,6 @@ const TodoCard = ({ order, store }) => {
         Order #: {order.orderNumber} Name: {order.customerName} Ph:{" "}
         {order.phone}
       </div>
-      <div>Order Status: {order.status}</div>
       <p>Number of shipments/requests {order.orderedItems.length}</p>
       <p>
         Posting order from:{" "}
