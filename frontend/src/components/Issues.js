@@ -3,11 +3,11 @@ const Issues = ({ orders, filterBy }) => {
 
   function onUpdateClick(e) {}
 
-  const data = orders
-    .filter((order) => order.status.includes(filterBy))
-    .map((order) => (
-      <>
-        {order.orderedItems.map((item) => {
+  const data = orders.map((order) => (
+    <>
+      {order.orderedItems
+        .filter((item) => item.status.includes(filterBy))
+        .map((item) => {
           return (
             <>
               <tr key={order._id} className="border">
@@ -15,7 +15,6 @@ const Issues = ({ orders, filterBy }) => {
                 <td>{new Date(order.createdAt).toLocaleDateString()}</td>
                 <td>{order.orderNumber}</td>
                 <td>{order.customerName}</td>
-                <td>{order.status}</td>
                 <td>{order.forHour}</td>
                 <td>{order.pickupLocation}</td>
                 <td>{item.sendingStore}</td>
@@ -97,8 +96,8 @@ const Issues = ({ orders, filterBy }) => {
             </>
           );
         })}
-      </>
-    ));
+    </>
+  ));
 
   return (
     <div>
