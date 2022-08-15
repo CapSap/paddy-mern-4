@@ -27,7 +27,6 @@ const OrderSchema = new mongoose.Schema(
         sendingStore: { type: String, required: true },
         ibt: { type: Number, default: "" },
         tracking: { type: String, default: "" },
-        status: { type: String, default: "Request created" },
         message: String,
       },
     ],
