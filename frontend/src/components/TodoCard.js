@@ -13,20 +13,7 @@ const TodoCard = ({ order, store }) => {
     });
   }
 
-  function onIBTsubmit(e) {
-    e.preventDefault();
-    fetch(`http://localhost:5000/api/orders/${e.target.id}`, {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        ...orderedItems,
-        requestID: e.target.id,
-        status: `${store} posting item`,
-      }),
-    });
-  }
-
-  function onIssueSubmit(e) {
+  function onFormSubmit(e) {
     e.preventDefault();
     console.log(e.target.message.value);
     console.log(e.target.name);
@@ -34,9 +21,9 @@ const TodoCard = ({ order, store }) => {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
+        ...orderedItems,
         requestID: e.target.name,
-        status: `${store} has an issue`,
-        message: e.target.message.value,
+        status: `${store} posting item`,
       }),
     });
   }
@@ -58,7 +45,7 @@ const TodoCard = ({ order, store }) => {
             <p>Please post to {order.pickupLocation}</p>
             <p>Request Status: {x.status}</p>
           </div>
-          <form id={x._id} onSubmit={onIBTsubmit} className="p-2">
+          <form name={x._id} onSubmit={onFormSubmit} className="p-2">
             <label htmlFor="ibt"> IBT: </label>
             <input
               onChange={onChange}
@@ -84,7 +71,7 @@ const TodoCard = ({ order, store }) => {
               Update
             </button>
           </form>
-          <form onSubmit={onIssueSubmit} name={x._id}>
+          <form onSubmit={onFormSubmit} name={x._id}>
             <button
               className="ml-2 bg-red-500 hover:bg-red-600 active:bg-red-700 focus-visible:ring ring-red-300 text-white text-sm md:text-base text-center rounded-lg outline-none transition duration-100 px-8 py-3"
               onClick={onIssueClick}
@@ -94,7 +81,11 @@ const TodoCard = ({ order, store }) => {
             {displayIssue ? (
               <>
                 <label htmlFor="message">Message: </label>{" "}
-                <textarea name="message" required={displayIssue}></textarea>
+                <textarea
+                  onChange={onChange}
+                  name="message"
+                  required={displayIssue}
+                ></textarea>
                 <button
                   className="ml-2 bg-green-500 hover:bg-green-600 active:bg-green-700 focus-visible:ring ring-green-300 text-white text-sm md:text-base text-center rounded-lg outline-none transition duration-100 px-8 py-3"
                   type="submit"
