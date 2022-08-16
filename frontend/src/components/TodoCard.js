@@ -23,7 +23,6 @@ const TodoCard = ({ order, store }) => {
       body: JSON.stringify({
         ...orderedItems,
         requestID: e.target.name,
-        status: `${store} posting item`,
       }),
     });
   }
