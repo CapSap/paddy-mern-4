@@ -9,8 +9,6 @@ function Entry() {
     orderedItems: [
       {
         sendingStore: "Canberra",
-        date: "",
-        posted: false,
         items: "",
       },
     ],
