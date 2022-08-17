@@ -5,7 +5,7 @@ const IssueCard = ({ order }) => {
     sendingStore: "",
   });
 
-  function onFormSubmit(e) {
+  function onRequestReassign(e) {
     e.preventDefault();
     console.log(e.target.name);
     fetch(`http://localhost:5000/api/orders/${e.target.name}`, {
@@ -54,7 +54,7 @@ const IssueCard = ({ order }) => {
                 <form
                   action="
                 submit"
-                  onSubmit={onFormSubmit}
+                  onSubmit={onRequestReassign}
                   name={item._id}
                 >
                   <label
