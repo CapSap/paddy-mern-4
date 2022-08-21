@@ -32,7 +32,7 @@ const TodoCard = ({ order, store, updater }) => {
   }
 
   const items = order.orderedItems
-    .filter((x) => x.sendingStore === "Canberra")
+    .filter((x) => x.sendingStore === store)
     .map((x) => {
       return (
         <div key={x.sku} className="bg-red-300 p-4 ">
@@ -104,10 +104,7 @@ const TodoCard = ({ order, store, updater }) => {
         {order.phone}
       </div>
       <p>Number of shipments/requests {order.orderedItems.length}</p>
-      <p>
-        Posting order from:{" "}
-        {order.orderedItems.map((item) => ` ${item.sendingStore}`)}
-      </p>
+
       <div>{items}</div>
     </div>
   );
