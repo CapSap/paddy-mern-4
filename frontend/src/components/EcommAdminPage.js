@@ -3,6 +3,10 @@ import Dashboard from "./Dashboard";
 import Issues from "./Issues";
 
 const EcommAdminPage = ({ orders }) => {
+  const ordersWithIssues = orders.filter((order) =>
+    order.orderedItems.find((request) => request.message !== null)
+  );
+
   return (
     <div>
       <p>
@@ -11,12 +15,12 @@ const EcommAdminPage = ({ orders }) => {
       </p>
       <br />
       <p>Orders with issue from store (OOS or other)</p>
-      <Issues orders={orders} filterBy={"issue"} />
+      <Issues orders={ordersWithIssues} filterBy={"issue"} />
       <br />
 
       {/* orders should only have status: request created, STORENAME has an issue,  */}
 
-      <p>
+      {/* <p>
         Orders waiting for Action from stores (fufil order or respond to
         message)
       </p>
@@ -26,11 +30,11 @@ const EcommAdminPage = ({ orders }) => {
 
       <p>Orders ready for ibt accept</p>
       <Dashboard orders={orders} filterBy={"posting"} />
-      <br />
+      <br /> */}
 
       {/* maybe the below should be a link to its own page.  */}
 
-      <p>All orders</p>
+      {/* <p>All orders</p>
       <Dashboard orders={orders} filterBy={""} />
 
       <br />
@@ -40,7 +44,7 @@ const EcommAdminPage = ({ orders }) => {
       <br />
 
       <p>Fake orders</p>
-      <Dashboard orders={fakeDB2} filterBy={""} />
+      <Dashboard orders={fakeDB2} filterBy={""} /> */}
     </div>
   );
 };

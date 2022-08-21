@@ -11,6 +11,12 @@ function App() {
 
   const [allOrders, setAllOrders] = useState([]);
 
+  const [update, setUpdate] = useState(true);
+
+  const updater = () => {
+    setUpdate(!update);
+  };
+
   useEffect(() => {
     fetch("http://localhost:5000/api/orders", {
       method: "GET",
@@ -18,7 +24,7 @@ function App() {
     })
       .then((res) => res.json())
       .then((data) => setAllOrders(data));
-  }, []);
+  }, [update]);
 
   return (
     <>
@@ -27,7 +33,12 @@ function App() {
         <Route
           path="/"
           element={
-            <Home store={store} orders={allOrders} setStore={setStore} />
+            <Home
+              store={store}
+              orders={allOrders}
+              setStore={setStore}
+              updater={updater}
+            />
           }
         />
         {/* entry component is independandt of store state. any view can create a CNC request */}

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const TodoCard = ({ order, store }) => {
+const TodoCard = ({ order, store, updater }) => {
   const [orderedItems, setOrderedItems] = useState();
 
   // this state hides/displays message text area and toggles required for ibt/tracking
@@ -15,17 +15,15 @@ const TodoCard = ({ order, store }) => {
 
   function onFormSubmit(e) {
     e.preventDefault();
-    console.log(e.target.message.value);
-    console.log(e.target.name);
     fetch(`http://localhost:5000/api/orders/${e.target.name}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         ...orderedItems,
         requestID: e.target.name,
-        status: `${store} posting item`,
       }),
     });
+    updater();
   }
 
   function onIssueClick(e) {
@@ -34,7 +32,7 @@ const TodoCard = ({ order, store }) => {
   }
 
   const items = order.orderedItems
-    .filter((x) => x.sendingStore === "Canberra")
+    .filter((x) => x.sendingStore === store)
     .map((x) => {
       return (
         <div key={x.sku} className="bg-red-300 p-4 ">
@@ -106,10 +104,7 @@ const TodoCard = ({ order, store }) => {
         {order.phone}
       </div>
       <p>Number of shipments/requests {order.orderedItems.length}</p>
-      <p>
-        Posting order from:{" "}
-        {order.orderedItems.map((item) => ` ${item.sendingStore}`)}
-      </p>
+
       <div>{items}</div>
     </div>
   );
