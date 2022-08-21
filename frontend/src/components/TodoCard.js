@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const TodoCard = ({ order, store }) => {
+const TodoCard = ({ order, store, updater }) => {
   const [orderedItems, setOrderedItems] = useState();
 
   // this state hides/displays message text area and toggles required for ibt/tracking
@@ -15,8 +15,6 @@ const TodoCard = ({ order, store }) => {
 
   function onFormSubmit(e) {
     e.preventDefault();
-    console.log(e.target.message.value);
-    console.log(e.target.name);
     fetch(`http://localhost:5000/api/orders/${e.target.name}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
@@ -25,6 +23,7 @@ const TodoCard = ({ order, store }) => {
         requestID: e.target.name,
       }),
     });
+    updater();
   }
 
   function onIssueClick(e) {
