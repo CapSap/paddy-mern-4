@@ -1,10 +1,15 @@
 const Card = ({ order }) => {
   const items = order.orderedItems.map((x) => {
     return (
-      <p key={x.sku}>
-        Sku: {x.sku} Qty: {x.qty} Description: {x.description} Requested from:{" "}
-        {x.sendingStore}
-      </p>
+      <div key={x._id} className="bg-green-200 p-4">
+        <div className="text-lg">
+          <p>Posting store {x.sendingStore}</p>
+          <p>Items: {x.items}</p>
+          {order.notes.length > 1 ? <p>Notes: {order.notes}</p> : null}
+          <p>Please post to {order.pickupLocation}</p>
+          {x.message ? <p>Message: {x.message}</p> : null}
+        </div>
+      </div>
     );
   });
   return (
@@ -13,7 +18,6 @@ const Card = ({ order }) => {
         Order #: {order.orderNumber} Name: {order.customerName} Ph:{" "}
         {order.phone}
       </div>
-      <div>Order Status: {order.status}</div>
       <div>{items}</div>
     </div>
   );
