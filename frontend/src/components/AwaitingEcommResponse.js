@@ -1,8 +1,6 @@
 import Card from "./Card";
 
 const AwaitingEcommResponse = ({ store, orders }) => {
-
-    
   const awaitingOrders = orders.filter((order) => {
     return order.orderedItems.some((item) => {
       console.log(item.message !== null);
@@ -14,7 +12,7 @@ const AwaitingEcommResponse = ({ store, orders }) => {
 
   return (
     <div>
-      <h2>Awating response from ecommerce:</h2>
+      <h3 className="font-bold">Awating response from ecommerce:</h3>
       {awaitingOrders.map((order) => (
         <Card key={order._id} order={order} />
       ))}
