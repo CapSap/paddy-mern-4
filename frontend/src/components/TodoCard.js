@@ -1,15 +1,26 @@
 import { useState } from "react";
 
 const TodoCard = ({ order, store, updater }) => {
-  const [orderedItems, setOrderedItems] = useState();
+  const [orderedItems, setOrderedItems] = useState({});
 
   // this state hides/displays message text area and toggles required for ibt/tracking
   const [displayIssue, setDisplayIssue] = useState(false);
 
   function onChange(e) {
+    const messageWithAuthor =
+      e.target.name === "message"
+        ? "Message from " +
+          store +
+          " at " +
+          new Date().toISOString() +
+          ": " +
+          e.target.value
+        : orderedItems.message;
+
     setOrderedItems({
       ...orderedItems,
       [e.target.name]: e.target.value,
+      message: messageWithAuthor,
     });
   }
 
