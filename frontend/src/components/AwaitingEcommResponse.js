@@ -4,7 +4,7 @@ const AwaitingEcommResponse = ({ store, orders }) => {
   const awaitingOrders = orders.filter((order) => {
     return order.orderedItems.some((item) => {
       console.log(item.message !== null);
-      return item.message;
+      return item.sendingStore === store && item.message;
     });
   });
 
