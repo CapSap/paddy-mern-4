@@ -15,12 +15,19 @@ const Incoming = (props) => {
     // so how to display the data?
 
     <div className="flex-1">
-      <h3 className="font-bold">
-        Incoming Orders / Awaiting customer pickup for the {props.store} store
-      </h3>
-      {filteredOrders.map((order) => (
-        <Card key={order._id} order={order} />
-      ))}
+      {filteredOrders.length ? (
+        <>
+          <h3 className="font-bold">
+            Incoming Orders / Awaiting customer pickup for the {props.store}{" "}
+            store
+          </h3>
+          {filteredOrders.map((order) => (
+            <Card key={order._id} order={order} />
+          ))}
+        </>
+      ) : (
+        <h3 className="font-bold text-green-600">No orders incoming</h3>
+      )}
     </div>
   );
 };
