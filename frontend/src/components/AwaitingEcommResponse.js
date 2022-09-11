@@ -9,10 +9,19 @@ const AwaitingEcommResponse = ({ store, orders }) => {
 
   return (
     <div>
-      <h3 className="font-bold">Awating response from ecommerce:</h3>
-      {awaitingOrders.map((order) => (
-        <Card key={order._id} order={order} />
-      ))}
+      {awaitingOrders.length ? (
+        <>
+          <h3 className="font-bold">Awating response from ecommerce:</h3>
+
+          {awaitingOrders.map((order) => (
+            <Card key={order._id} order={order} />
+          ))}
+        </>
+      ) : (
+        <h3 className="font-bold text-green-700">
+          No orders with issues awaiting ecomm response
+        </h3>
+      )}
     </div>
   );
 };
