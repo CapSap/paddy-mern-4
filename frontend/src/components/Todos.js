@@ -9,15 +9,23 @@ const Todos = (props) => {
 
   return (
     <div>
-      <h3 className="font-bold">Todos for {props.store}</h3>
-      {orderTodos.map((order) => (
-        <TodoCard
-          key={order._id}
-          order={order}
-          store={props.store}
-          updater={props.updater}
-        />
-      ))}
+      {orderTodos.length > 0 ? (
+        <>
+          <h3 className="font-bold">Todos for {props.store}</h3>
+          {orderTodos.map((order) => (
+            <TodoCard
+              key={order._id}
+              order={order}
+              store={props.store}
+              updater={props.updater}
+            />
+          ))}
+        </>
+      ) : (
+        <h3 className="font-bold">
+          There are no new outstanding todos for you
+        </h3>
+      )}
     </div>
   );
 };
