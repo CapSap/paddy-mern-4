@@ -22,7 +22,7 @@ const Todos = (props) => {
           ))}
         </>
       ) : (
-        <h3 className="font-bold">
+        <h3 className="font-bold text-green-600">
           There are no new outstanding todos for you
         </h3>
       )}

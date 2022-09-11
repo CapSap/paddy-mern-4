@@ -18,7 +18,7 @@ const AwaitingEcommResponse = ({ store, orders }) => {
           ))}
         </>
       ) : (
-        <h3 className="font-bold text-green-700">
+        <h3 className="font-bold text-green-600">
           No orders with issues awaiting ecomm response
         </h3>
       )}
