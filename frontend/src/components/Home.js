@@ -7,9 +7,15 @@ const Home = ({ store, orders, setStore, updater }) => {
   return (
     <>
       <StoreChooser store={store} setStore={setStore} />
-      <Todos store={store} orders={orders} updater={updater} />
-      <AwaitingEcommResponse store={store} orders={orders} />
-      <Incoming store={store} orders={orders} />
+      {store ? (
+        <>
+          <Todos store={store} orders={orders} updater={updater} />
+          <AwaitingEcommResponse store={store} orders={orders} />
+          <Incoming store={store} orders={orders} />
+        </>
+      ) : (
+        <h3 className="font-bold text-blue-600">Please select a store</h3>
+      )}
     </>
   );
 };
