@@ -24,10 +24,12 @@ There will be 1 HQ user that creates and delegates tasks. 8 locations that can b
       D--->E{Ecomm / HQ acknowleges. request is updated or deleted}
       E--Request is modfied or re-asigned to a differnt store--->A
       E--Request is deleted--->I[Close request]
-      C-->F[Ecomm / HQ  accpets IBT]
       F --IBT is good---> G[Close request]
       F --IBT is bad ---> H[Follow up sent to store]
       H --Communication with store to correct mistake ---> J[Close request]
+      C --Items are ready for collection--> K[Store leaves a VM and updates order with VM left or other message] --> L[customer picks up] 
+      K ---> F[Ecomm / HQ  accpets IBT]
+
 ```
 
 
