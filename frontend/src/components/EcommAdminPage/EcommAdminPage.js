@@ -1,4 +1,4 @@
-import fakeDB2 from "../../fakeDB2";
+import fakeDB2 from "../../../fakeDB2";
 import Dashboard from "./Dashboard";
 import Issues from "./Issues";
 

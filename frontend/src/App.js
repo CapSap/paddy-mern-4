@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import Entry from "./components/Entry";
+import Entry from "./components/EntryPage/Entry";
 
 import { Routes, Route, Link } from "react-router-dom";
-import Home from "./components/Home";
+import Home from "./components/HomePage/Home";
 import NavBar from "./components/Navbar";
-import EcommAdminPage from "./components/EcommAdminPage";
+import EcommAdminPage from "./components/EcommAdminPage/EcommAdminPage";
 
 function App() {
   const [store, setStore] = useState("");
