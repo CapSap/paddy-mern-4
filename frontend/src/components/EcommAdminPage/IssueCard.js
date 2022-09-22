@@ -28,7 +28,7 @@ const IssueCard = ({ order }) => {
   }
 
   return (
-    <div>
+    <>
       {order.orderedItems.map((item) => {
         return (
           <>
@@ -125,7 +125,7 @@ const IssueCard = ({ order }) => {
           </>
         );
       })}
-    </div>
+    </>
   );
 };
 
