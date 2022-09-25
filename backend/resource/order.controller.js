@@ -68,9 +68,16 @@ const updateOrderedItems = asyncHandler(async (req, res) => {
   res.status(200).json(updatedOrder);
 });
 
+const createNewItemRequest = asyncHandler(async (req, res) => {
+  console.log("create new item request");
+
+  res.status(200).json("hello");
+});
+
 module.exports = {
   getOrders,
   setOrder,
   updateOrder,
   updateOrderedItems,
+  createNewItemRequest,
 };
