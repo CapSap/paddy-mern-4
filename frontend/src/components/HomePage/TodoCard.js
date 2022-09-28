@@ -46,7 +46,7 @@ const TodoCard = ({ order, store, updater }) => {
     .filter((x) => x.sendingStore === store)
     .map((x) => {
       return (
-        <div key={x.sku} className="bg-red-300 p-4 ">
+        <div key={x.sku} className="bg-green-200 p-4 ">
           <div className="text-lg">
             <p>Posting store {x.sendingStore}</p>
             <p>Items: {x.items}</p>
