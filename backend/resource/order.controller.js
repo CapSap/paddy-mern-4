@@ -69,9 +69,36 @@ const updateOrderedItems = asyncHandler(async (req, res) => {
 });
 
 const createNewItemRequest = asyncHandler(async (req, res) => {
-  console.log("create new item request");
+  const order = await Order.findById(req.params.orderid);
+  if (!order) {
+    res.status(400);
+    throw new Error("Order not found");
+  }
 
-  res.status(200).json("hello");
+  // update the old request
+  const updateObjectWithPositionalOperatorInKeyName = {};
+  Object.keys(req.body.oldRequest).map((key) => {
+    updateObjectWithPositionalOperatorInKeyName[`orderedItems.$.${key}`] =
+      req.body.oldRequest[key];
+  });
+
+  const updatedOrder = await Order.findOneAndUpdate(
+    {
+      "orderedItems._id": req.body.oldRequestID,
+    },
+    {
+      $set: { ...updateObjectWithPositionalOperatorInKeyName },
+    },
+    {
+      new: true,
+    }
+  );
+  // add a new request for new store.
+
+  updatedOrder.orderedItems.push(req.body.newRequest);
+  updatedOrder.save();
+
+  res.status(200).json(updatedOrder);
 });
 
 module.exports = {

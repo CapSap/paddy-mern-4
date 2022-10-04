@@ -10,7 +10,7 @@ const {
 
 router.route("/").get(getOrders).post(setOrder);
 
-router.patch("/createNewRequest/:reqid", createNewItemRequest);
+router.patch("/createNewRequest/:orderid", createNewItemRequest);
 
 router.put("/:id", updateOrder);
 
