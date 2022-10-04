@@ -93,8 +93,8 @@ const createNewItemRequest = asyncHandler(async (req, res) => {
       new: true,
     }
   );
-  // add a new request for new store.
 
+  // add the new request for new store.
   updatedOrder.orderedItems.push(req.body.newRequest);
   updatedOrder.save();
 
