@@ -84,7 +84,7 @@ const createNewItemRequest = asyncHandler(async (req, res) => {
 
   const updatedOrder = await Order.findOneAndUpdate(
     {
-      "orderedItems._id": req.body.oldRequestID,
+      "orderedItems._id": req.body.oldRequest._id,
     },
     {
       $set: { ...updateObjectWithPositionalOperatorInKeyName },
