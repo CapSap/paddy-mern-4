@@ -4,7 +4,9 @@ import Issues from "./Issues";
 
 const EcommAdminPage = ({ orders }) => {
   const ordersWithIssues = orders.filter((order) =>
-    order.orderedItems.find((request) => request.message !== null)
+    order.orderedItems.some((request) =>
+      request.requestStatus.includes("issue")
+    )
   );
 
   return (
