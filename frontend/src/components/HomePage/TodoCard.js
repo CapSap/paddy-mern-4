@@ -21,6 +21,7 @@ const TodoCard = ({ order, store, updater }) => {
       ...orderedItems,
       [e.target.name]: e.target.value,
       message: messageWithAuthor,
+      requestStatus: messageWithAuthor ? "issue" : "updated",
     });
   }
 
@@ -43,18 +44,18 @@ const TodoCard = ({ order, store, updater }) => {
   }
 
   const items = order.orderedItems
-    .filter((x) => x.sendingStore === store)
-    .map((x) => {
+    .filter((request) => request.sendingStore === store)
+    .map((request) => {
       return (
-        <div key={x.sku} className="bg-red-300 p-4 ">
+        <div key={request.sku} className="bg-green-200 p-4 ">
           <div className="text-lg">
-            <p>Posting store {x.sendingStore}</p>
-            <p>Items: {x.items}</p>
+            <p>Posting store {request.sendingStore}</p>
+            <p>Items: {request.items}</p>
             {order.notes.length > 1 ? <p>Notes: {order.notes}</p> : null}
             <p>Please post to {order.pickupLocation}</p>
-            <p>Request Status: {x.status}</p>
+            <p>Request Status: {request.status}</p>
           </div>
-          <form name={x._id} onSubmit={onFormSubmit} className="p-2">
+          <form name={request._id} onSubmit={onFormSubmit} className="p-2">
             <label htmlFor="ibt"> IBT: </label>
             <input
               onChange={onChange}
@@ -80,7 +81,7 @@ const TodoCard = ({ order, store, updater }) => {
               Update
             </button>
           </form>
-          <form onSubmit={onFormSubmit} name={x._id}>
+          <form onSubmit={onFormSubmit} name={request._id}>
             <button
               className="ml-2 bg-red-500 hover:bg-red-600 active:bg-red-700 focus-visible:ring ring-red-300 text-white text-sm md:text-base text-center rounded-lg outline-none transition duration-100 px-8 py-3"
               onClick={onIssueClick}

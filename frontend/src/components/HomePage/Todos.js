@@ -4,7 +4,10 @@ const Todos = (props) => {
   // props contains store and AllOrders from app.js
 
   const orderTodos = props.orders.filter((order) => {
-    return order.orderedItems.some((item) => item.sendingStore === props.store);
+    return order.orderedItems.some(
+      (item) =>
+        item.sendingStore === props.store && item.requestStatus !== "cancelled"
+    );
   });
 
   return (

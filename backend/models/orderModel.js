@@ -28,6 +28,7 @@ const OrderSchema = new mongoose.Schema(
         ibt: { type: Number, default: null },
         tracking: { type: String, default: null },
         message: { type: String, default: null },
+        requestStatus: { type: String, default: "created" },
       },
     ],
     fourHour: {

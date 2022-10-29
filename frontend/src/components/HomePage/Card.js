@@ -1,7 +1,7 @@
 const Card = ({ order }) => {
   const items = order.orderedItems.map((x) => {
     return (
-      <div key={x._id} className="bg-green-200 p-4">
+      <div key={x._id} className="bg-cyan-200 p-4">
         <div className="text-lg">
           <p>Posting store {x.sendingStore}</p>
           <p>Items: {x.items}</p>
