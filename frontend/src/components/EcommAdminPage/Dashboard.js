@@ -1,17 +1,17 @@
 import OrderCard from "./OrderCard";
 
 const Dashboard = ({ orders, filterBy }) => {
-  console.log(orders);
+  const filteredOrder = orders.filter((order) =>
+    order.orderedItems.some((request) =>
+      request.requestStatus.includes(filterBy)
+    )
+  );
 
-  function onArchiveClick(e) {}
-
-  const data = orders.map((order) => (
-    <>
-      <OrderCard />
-    </>
-  ));
-
-  return data;
+  return filteredOrder.length > 1 ? (
+    filteredOrder.map((order) => <OrderCard order={order} key={order._id} />)
+  ) : (
+    <>There are no orders that have status {filterBy}</>
+  );
 };
 
 export default Dashboard;
