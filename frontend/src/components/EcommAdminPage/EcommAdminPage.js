@@ -20,23 +20,18 @@ const EcommAdminPage = ({ orders }) => {
       <Issues orders={ordersWithIssues} filterBy={"issue"} />
       <br />
 
-      {/* orders should only have status: request created, STORENAME has an issue,  */}
-
-      {/* <p>
-        Orders waiting for Action from stores (fufil order or respond to
-        message)
-      </p>
-      <Dashboard orders={orders} filterBy={"Request created"} />
+      <p>Orders awaiting store action</p>
+      <Dashboard orders={orders} filterBy={"created"} />
 
       <br />
 
       <p>Orders ready for ibt accept</p>
-      <Dashboard orders={orders} filterBy={"posting"} />
-      <br /> */}
+      <Dashboard orders={orders} filterBy={"posted"} />
+      <br />
 
       {/* maybe the below should be a link to its own page.  */}
 
-      {/* <p>All orders</p>
+      <p>All orders</p>
       <Dashboard orders={orders} filterBy={""} />
 
       <br />
@@ -46,7 +41,7 @@ const EcommAdminPage = ({ orders }) => {
       <br />
 
       <p>Fake orders</p>
-      <Dashboard orders={fakeDB2} filterBy={""} /> */}
+      <Dashboard orders={fakeDB2} filterBy={""} />
     </div>
   );
 };
