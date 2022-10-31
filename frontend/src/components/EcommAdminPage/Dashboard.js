@@ -10,7 +10,7 @@ const Dashboard = ({ orders, filterBy }) => {
   return filteredOrder.length > 1 ? (
     filteredOrder.map((order) => <OrderCard order={order} key={order._id} />)
   ) : (
-    <>There are no orders that have status {filterBy}</>
+    <>There are no orders that have a request status of {filterBy}</>
   );
 };
 
