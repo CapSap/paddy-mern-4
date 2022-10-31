@@ -6,11 +6,6 @@ const Issues = ({ orders }) => {
 
   return (
     <div>
-      {/* {orders.map((order) =>
-        order.orderedItems.map((request) => (
-          <IssueCard order={order} key={order.id} />
-        ))
-      )} */}
       {orders.map((order) => {
         return order.orderedItems
           .filter((request) => request.requestStatus === "issue")
