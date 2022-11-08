@@ -6,9 +6,15 @@ const Todos = (props) => {
   const orderTodos = props.orders.filter((order) => {
     return order.orderedItems.some(
       (item) =>
-        item.sendingStore === props.store && item.requestStatus !== "cancelled"
+        item.sendingStore === props.store && item.requestStatus == "created"
     );
   });
+
+  const fourHourTodos = props.orders.filter(
+    (order) => order.pickupLocation === props.store
+  );
+
+  console.log(fourHourTodos);
 
   return (
     <div>

@@ -4,12 +4,20 @@ import StoreChooser from "./StoreChooser";
 import Todos from "./Todos";
 
 const Home = ({ store, orders, setStore, updater }) => {
+  const fourHourcnc = orders.filter((order) =>
+    order.orderedItems.some((request) => request.sendingStore === store)
+  );
+
+  const postingToOtherstores = orders.filter((order) => order.orderedItems);
+
   return (
     <>
       <StoreChooser store={store} setStore={setStore} />
       {store ? (
         <>
-          <Todos store={store} orders={orders} updater={updater} />
+          <Todos store={store} orders={orders} />
+          <p>printed/in progress todos</p>
+          <Todos store={store} orders={fourHourcnc} />
           <AwaitingEcommResponse store={store} orders={orders} />
           <Incoming store={store} orders={orders} />
         </>
