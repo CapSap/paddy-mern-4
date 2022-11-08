@@ -53,7 +53,7 @@ const TodoCard = ({ order, store, updater }) => {
             <p>Items: {request.items}</p>
             {order.notes.length > 1 ? <p>Notes: {order.notes}</p> : null}
             <p>Please post to {order.pickupLocation}</p>
-            <p>Request Status: {request.status}</p>
+            <p>Request Status: {request.requestStatus}</p>
           </div>
           <form name={request._id} onSubmit={onFormSubmit} className="p-2">
             <label htmlFor="ibt"> IBT: </label>
@@ -89,7 +89,7 @@ const TodoCard = ({ order, store, updater }) => {
               There is an issue!
             </button>
             {displayIssue ? (
-              <>
+              <div className="mt-4">
                 <label htmlFor="message">Message: </label>{" "}
                 <textarea
                   onChange={onChange}
@@ -102,7 +102,7 @@ const TodoCard = ({ order, store, updater }) => {
                 >
                   Send to Ecomm
                 </button>
-              </>
+              </div>
             ) : null}
           </form>
         </div>
