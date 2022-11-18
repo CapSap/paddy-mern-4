@@ -1,8 +1,6 @@
 import TodoCard from "./TodoCard";
 
 const Todos = (props) => {
-  // props contains store and AllOrders from app.js
-
   return (
     <div>
       {props.orders.length > 0 ? (
