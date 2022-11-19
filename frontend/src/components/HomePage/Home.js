@@ -18,10 +18,6 @@ const Home = ({ store, orders, setStore, updater }) => {
     (order) => order.pickupLocation !== store
   );
 
-  console.log(orderTodos);
-  console.log(fourHourTodos);
-  console.log(notFourHour);
-
   return (
     <>
       <StoreChooser store={store} setStore={setStore} />
