@@ -38,7 +38,7 @@ const IssueCard = ({ order, filteredRequest }) => {
   }
 
   return (
-    <div className="border border-red-300 m-4">
+    <div className="border border-purple-400 m-4">
       <div className="flex">
         <p className="m-2">Order Number: {order.orderNumber}</p>
         <p className="m-2">Name: {order.customerName}</p>
