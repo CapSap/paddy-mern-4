@@ -23,9 +23,11 @@ const Home = ({ store, orders, setStore, updater }) => {
       <StoreChooser store={store} setStore={setStore} />
       {store ? (
         <>
-          <Todos store={store} orders={fourHourTodos} updater={updater} />
+          <h3 className="font-bold">Four hour todos</h3>
 
-          <p>printed/in progress todos</p>
+          <Todos store={store} orders={fourHourTodos} updater={updater} />
+          <h3 className="font-bold">All other todos</h3>
+
           <Todos store={store} orders={notFourHour} updater={updater} />
           <AwaitingEcommResponse store={store} orders={orders} />
           <Incoming store={store} orders={orders} />
