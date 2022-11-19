@@ -5,7 +5,7 @@ const Issues = ({ orders }) => {
   // issues needs to pass down each order as props to each issuecard.
 
   return orders.map((order) => {
-    order.orderedItems
+    return order.orderedItems
       .filter((request) => request.requestStatus === "issue")
       .map((filteredRequest) => {
         return (
