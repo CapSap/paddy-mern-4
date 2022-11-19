@@ -4,12 +4,33 @@ import StoreChooser from "./StoreChooser";
 import Todos from "./Todos";
 
 const Home = ({ store, orders, setStore, updater }) => {
+  const orderTodos = orders.filter((order) => {
+    return order.orderedItems.some(
+      (item) => item.sendingStore === store && item.requestStatus == "created"
+    );
+  });
+
+  const fourHourTodos = orderTodos.filter(
+    (order) => order.pickupLocation === store
+  );
+
+  const notFourHour = orderTodos.filter(
+    (order) => order.pickupLocation !== store
+  );
+
+  console.log(orderTodos);
+  console.log(fourHourTodos);
+  console.log(notFourHour);
+
   return (
     <>
       <StoreChooser store={store} setStore={setStore} />
       {store ? (
         <>
-          <Todos store={store} orders={orders} updater={updater} />
+          <Todos store={store} orders={fourHourTodos} updater={updater} />
+
+          <p>printed/in progress todos</p>
+          <Todos store={store} orders={notFourHour} updater={updater} />
           <AwaitingEcommResponse store={store} orders={orders} />
           <Incoming store={store} orders={orders} />
         </>
