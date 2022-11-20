@@ -22,14 +22,17 @@ const OrderSchema = new mongoose.Schema(
       default: false,
     },
     orderedItems: [
-      {
-        items: { type: String, required: true },
-        sendingStore: { type: String, required: true },
-        ibt: { type: Number, default: null },
-        tracking: { type: String, default: null },
-        message: { type: String, default: null },
-        requestStatus: { type: String, default: "created" },
-      },
+      new mongoose.Schema(
+        {
+          items: { type: String, required: true },
+          sendingStore: { type: String, required: true },
+          ibt: { type: Number, default: null },
+          tracking: { type: String, default: null },
+          message: { type: String, default: null },
+          requestStatus: { type: String, default: "created" },
+        },
+        { timestamps: true }
+      ),
     ],
     fourHour: {
       type: Boolean,
