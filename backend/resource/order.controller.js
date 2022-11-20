@@ -101,10 +101,26 @@ const createNewItemRequest = asyncHandler(async (req, res) => {
   res.status(200).json(updatedOrder);
 });
 
+const deleteOrder = asyncHandler(async (req, res) => {
+  const order = await Order.findById(req.params.id);
+  if (!order) {
+    res.status(400);
+    throw new Error("Order not found");
+  }
+  const orderToBeArchived = await Order.findByIdAndUpdate(
+    req.params.id,
+    { isArchived: true },
+    {
+      returnDocument: "after",
+    }
+  );
+  res.status(200).json(orderToBeArchived);
+});
 module.exports = {
   getOrders,
   setOrder,
   updateOrder,
   updateOrderedItems,
   createNewItemRequest,
+  deleteOrder,
 };
