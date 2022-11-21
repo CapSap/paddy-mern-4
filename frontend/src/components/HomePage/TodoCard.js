@@ -21,7 +21,7 @@ const TodoCard = ({ order, store, updater }) => {
       ...orderedItems,
       [e.target.name]: e.target.value,
       message: messageWithAuthor,
-      requestStatus: messageWithAuthor ? "issue" : `updated by ${store}`,
+      requestStatus: messageWithAuthor ? "Issue" : `Updated by ${store}`,
     });
   }
 
