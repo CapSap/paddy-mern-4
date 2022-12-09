@@ -2,7 +2,9 @@
 This is attempt number 4 for creating this app. It was a lot harder than what I thought it would be!
 
 ## Project Description
-This app will serve as a task coordination tool an ecommerce department within a retail company. This app will communicate tasks and allow information to be passed back regarding specific tasks.
+This app will coordinate click and collect operations for a retailer. 
+It will be a task coordination tool for an ecommerce department within a retail company. 
+This app will communicate tasks and allow information to be passed back regarding specific tasks.
 
 ## Problem
 Problem I'm trying to solve was that at my old workplace several google sheets were used to coordinate task deligation and information flow between an ecommerce center and 7 retail locations. 
