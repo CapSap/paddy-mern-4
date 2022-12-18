@@ -31,8 +31,9 @@ const OrderSchema = new mongoose.Schema(
         requestStatus: { type: String, default: "created" },
         requestHistory: [
           {
-            time: { type: String, required: true },
+            date: { type: Date, required: true },
             action: { type: String, required: true },
+            author: { type: String, required: true },
           },
         ],
       },
