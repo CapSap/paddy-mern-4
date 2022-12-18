@@ -29,6 +29,12 @@ const OrderSchema = new mongoose.Schema(
         tracking: { type: String, default: null },
         message: { type: String, default: null },
         requestStatus: { type: String, default: "created" },
+        requestHistory: [
+          {
+            time: { type: String, required: true },
+            action: { type: String, required: true },
+          },
+        ],
       },
     ],
     fourHour: {
