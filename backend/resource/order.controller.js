@@ -39,35 +39,6 @@ const updateOrder = asyncHandler(async (req, res) => {
   res.status(200).json(updatedOrder);
 });
 
-// const updateOrderedItems = asyncHandler(async (req, res) => {
-//   const order = await Order.findOne({ "orderedItems._id": req.params.reqid });
-//   if (!order) {
-//     res.status(400);
-//     throw new Error("Order not found");
-//   }
-
-//   // create a new object from the res.body, and add the required orderedItems.$. positional to key names
-//   const updateObjectWithPositionalOperatorInKeyName = {};
-//   Object.keys(req.body).map((key) => {
-//     updateObjectWithPositionalOperatorInKeyName[`orderedItems.$.${key}`] =
-//       req.body[key];
-//   });
-
-//   const updatedOrder = await Order.findOneAndUpdate(
-//     {
-//       "orderedItems._id": req.body.requestID,
-//     },
-//     {
-//       $set: { ...updateObjectWithPositionalOperatorInKeyName },
-//     },
-//     {
-//       new: true,
-//     }
-//   );
-
-//   res.status(200).json(updatedOrder);
-// });
-
 const updateOrderedItems = asyncHandler(async (req, res) => {
   const order = await Order.findOne({ "orderedItems._id": req.params.reqid });
   if (!order) {
