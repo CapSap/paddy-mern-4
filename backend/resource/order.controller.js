@@ -39,6 +39,35 @@ const updateOrder = asyncHandler(async (req, res) => {
   res.status(200).json(updatedOrder);
 });
 
+// const updateOrderedItems = asyncHandler(async (req, res) => {
+//   const order = await Order.findOne({ "orderedItems._id": req.params.reqid });
+//   if (!order) {
+//     res.status(400);
+//     throw new Error("Order not found");
+//   }
+
+//   // create a new object from the res.body, and add the required orderedItems.$. positional to key names
+//   const updateObjectWithPositionalOperatorInKeyName = {};
+//   Object.keys(req.body).map((key) => {
+//     updateObjectWithPositionalOperatorInKeyName[`orderedItems.$.${key}`] =
+//       req.body[key];
+//   });
+
+//   const updatedOrder = await Order.findOneAndUpdate(
+//     {
+//       "orderedItems._id": req.body.requestID,
+//     },
+//     {
+//       $set: { ...updateObjectWithPositionalOperatorInKeyName },
+//     },
+//     {
+//       new: true,
+//     }
+//   );
+
+//   res.status(200).json(updatedOrder);
+// });
+
 const updateOrderedItems = asyncHandler(async (req, res) => {
   const order = await Order.findOne({ "orderedItems._id": req.params.reqid });
   if (!order) {
@@ -46,26 +75,29 @@ const updateOrderedItems = asyncHandler(async (req, res) => {
     throw new Error("Order not found");
   }
 
-  // create a new object from the res.body, and add the required orderedItems.$. positional to key names
-  const updateObjectWithPositionalOperatorInKeyName = {};
-  Object.keys(req.body).map((key) => {
-    updateObjectWithPositionalOperatorInKeyName[`orderedItems.$.${key}`] =
-      req.body[key];
+  // pull out the request from the order
+  const requestObject = order.orderedItems
+    .find((request) => {
+      return request.id === req.params.reqid;
+    })
+    .toObject();
+
+  // find the index where to re-insert
+  const index = order.orderedItems.findIndex((request) => {
+    return request.id === req.params.reqid;
   });
 
-  const updatedOrder = await Order.findOneAndUpdate(
-    {
-      "orderedItems._id": req.body.requestID,
-    },
-    {
-      $set: { ...updateObjectWithPositionalOperatorInKeyName },
-    },
-    {
-      new: true,
-    }
-  );
+  // write changes to a new updated object
+  const updatedObj = { ...requestObject, ...req.body };
 
-  res.status(200).json(updatedOrder);
+  // save changes
+  order.orderedItems[index] = updatedObj;
+  order.orderedItems[index].requestHistory.push({
+    date: new Date(),
+    author: req.body.author,
+    action: JSON.stringify(req.body),
+  });
+  await order.save();
 });
 
 const createNewItemRequest = asyncHandler(async (req, res) => {
