@@ -22,6 +22,7 @@ const TodoCard = ({ order, store, updater }) => {
       [e.target.name]: e.target.value,
       message: messageWithAuthor,
       requestStatus: messageWithAuthor ? "Issue" : `Updated by ${store}`,
+      author: store,
     });
   }
 
@@ -32,7 +33,6 @@ const TodoCard = ({ order, store, updater }) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         ...orderedItems,
-        requestID: e.target.name,
       }),
     });
     updater();
