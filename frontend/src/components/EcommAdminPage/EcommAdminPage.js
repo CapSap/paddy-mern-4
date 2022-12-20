@@ -5,7 +5,7 @@ import Issues from "./Issues";
 const EcommAdminPage = ({ orders }) => {
   const ordersWithIssues = orders.filter((order) =>
     order.orderedItems.some((request) =>
-      request.requestStatus.includes("issue")
+      request.requestStatus.includes("Issue")
     )
   );
 
@@ -17,7 +17,7 @@ const EcommAdminPage = ({ orders }) => {
       </p>
       <br />
       <p>Orders with issue from store (OOS or other)</p>
-      <Issues orders={ordersWithIssues} filterBy={"issue"} />
+      <Issues orders={ordersWithIssues} filterBy={"Issue"} />
       <br />
 
       <p>Orders awaiting store action</p>

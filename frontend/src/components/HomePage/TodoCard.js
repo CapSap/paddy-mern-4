@@ -21,7 +21,8 @@ const TodoCard = ({ order, store, updater }) => {
       ...orderedItems,
       [e.target.name]: e.target.value,
       message: messageWithAuthor,
-      requestStatus: messageWithAuthor ? "issue" : "updated",
+      requestStatus: messageWithAuthor ? "Issue" : `Updated by ${store}`,
+      author: store,
     });
   }
 
@@ -32,7 +33,6 @@ const TodoCard = ({ order, store, updater }) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         ...orderedItems,
-        requestID: e.target.name,
       }),
     });
     updater();
@@ -43,67 +43,69 @@ const TodoCard = ({ order, store, updater }) => {
     setDisplayIssue(!displayIssue);
   }
 
-  const todo = order.orderedItems.map((request) => (
-    <div key={request.sku} className="bg-green-200 p-4 ">
-      <div className="text-lg">
-        <p>Posting store {request.sendingStore}</p>
-        <p>Items: {request.items}</p>
-        {order.notes.length > 1 ? <p>Notes: {order.notes}</p> : null}
-        <p>Please post to {order.pickupLocation}</p>
-        <p>Request Status: {request.requestStatus}</p>
+  const todo = order.orderedItems
+    .filter((request) => request.sendingStore === store)
+    .map((request) => (
+      <div key={request.sku} className="bg-green-200 p-4 ">
+        <div className="text-lg">
+          <p>Posting store {request.sendingStore}</p>
+          <p>Items: {request.items}</p>
+          {order.notes.length > 1 ? <p>Notes: {order.notes}</p> : null}
+          <p>Please post to {order.pickupLocation}</p>
+          <p>Request Status: {request.requestStatus}</p>
+        </div>
+        <form name={request._id} onSubmit={onFormSubmit} className="p-2">
+          <label htmlFor="ibt"> IBT: </label>
+          <input
+            onChange={onChange}
+            required={!displayIssue}
+            id="ibt"
+            name="ibt"
+            type="text"
+            className=" bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2"
+          ></input>
+          <label htmlFor="tracking"> Tracking: </label>
+          <input
+            onChange={onChange}
+            required={!displayIssue}
+            id="tracking"
+            name="tracking"
+            type="text"
+            className=" bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2"
+          ></input>
+          <button
+            type="submit"
+            className="ml-2 bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-700 focus-visible:ring ring-indigo-300 text-white text-sm md:text-base text-center rounded-lg outline-none transition duration-100 px-8 py-3"
+          >
+            Update
+          </button>
+        </form>
+        <form onSubmit={onFormSubmit} name={request._id}>
+          <button
+            className="ml-2 bg-red-500 hover:bg-red-600 active:bg-red-700 focus-visible:ring ring-red-300 text-white text-sm md:text-base text-center rounded-lg outline-none transition duration-100 px-8 py-3"
+            onClick={onIssueClick}
+          >
+            There is an issue!
+          </button>
+          {displayIssue ? (
+            <div className="mt-4">
+              <label htmlFor="message">Message: </label>{" "}
+              <textarea
+                onChange={onChange}
+                name="message"
+                required={displayIssue}
+              ></textarea>
+              <button
+                className="ml-2 bg-green-500 hover:bg-green-600 active:bg-green-700 focus-visible:ring ring-green-300 text-white text-sm md:text-base text-center rounded-lg outline-none transition duration-100 px-8 py-3"
+                type="submit"
+              >
+                Send to Ecomm
+              </button>
+            </div>
+          ) : null}
+        </form>
       </div>
-      <form name={request._id} onSubmit={onFormSubmit} className="p-2">
-        <label htmlFor="ibt"> IBT: </label>
-        <input
-          onChange={onChange}
-          required={!displayIssue}
-          id="ibt"
-          name="ibt"
-          type="text"
-          className=" bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2"
-        ></input>
-        <label htmlFor="tracking"> Tracking: </label>
-        <input
-          onChange={onChange}
-          required={!displayIssue}
-          id="tracking"
-          name="tracking"
-          type="text"
-          className=" bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2"
-        ></input>
-        <button
-          type="submit"
-          className="ml-2 bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-700 focus-visible:ring ring-indigo-300 text-white text-sm md:text-base text-center rounded-lg outline-none transition duration-100 px-8 py-3"
-        >
-          Update
-        </button>
-      </form>
-      <form onSubmit={onFormSubmit} name={request._id}>
-        <button
-          className="ml-2 bg-red-500 hover:bg-red-600 active:bg-red-700 focus-visible:ring ring-red-300 text-white text-sm md:text-base text-center rounded-lg outline-none transition duration-100 px-8 py-3"
-          onClick={onIssueClick}
-        >
-          There is an issue!
-        </button>
-        {displayIssue ? (
-          <div className="mt-4">
-            <label htmlFor="message">Message: </label>{" "}
-            <textarea
-              onChange={onChange}
-              name="message"
-              required={displayIssue}
-            ></textarea>
-            <button
-              className="ml-2 bg-green-500 hover:bg-green-600 active:bg-green-700 focus-visible:ring ring-green-300 text-white text-sm md:text-base text-center rounded-lg outline-none transition duration-100 px-8 py-3"
-              type="submit"
-            >
-              Send to Ecomm
-            </button>
-          </div>
-        ) : null}
-      </form>
-    </div>
-  ));
+    ));
 
   return (
     <div className="p-2 w-1/2 border">

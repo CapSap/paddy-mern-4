@@ -8,6 +8,7 @@ const Card = ({ order }) => {
           {order.notes.length > 1 ? <p>Notes: {order.notes}</p> : null}
           <p>Please post to {order.pickupLocation}</p>
           {x.message ? <p>Message: {x.message}</p> : null}
+          <p>Request Status: {x.requestStatus}</p>
         </div>
       </div>
     );
