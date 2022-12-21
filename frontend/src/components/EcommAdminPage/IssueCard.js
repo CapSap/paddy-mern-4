@@ -33,6 +33,7 @@ const IssueCard = ({ order, filteredRequest }) => {
       body: JSON.stringify({
         oldRequest,
         newRequest,
+        author: "ecomm",
       }),
     });
   }

@@ -7,8 +7,6 @@ const getOrders = asyncHandler(async (req, res) => {
   res.status(200).json(orders);
 });
 const setOrder = asyncHandler(async (req, res) => {
-  console.log(req.body);
-
   if (!req.body.orderNumber) {
     res.status(400);
     throw new Error("please add a text field");
@@ -96,6 +94,16 @@ const createNewItemRequest = asyncHandler(async (req, res) => {
       new: true,
     }
   );
+
+  // update history on old request
+  const index = updatedOrder.orderedItems.findIndex((request) => {
+    return request.id === req.body.oldRequest._id;
+  });
+  updatedOrder.orderedItems[index].requestHistory.push({
+    date: new Date(),
+    author: req.body.author,
+    action: JSON.stringify(req.body.oldRequest),
+  });
 
   // add the new request for new store.
   updatedOrder.orderedItems.push(req.body.newRequest);
